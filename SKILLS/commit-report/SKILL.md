@@ -1,12 +1,12 @@
 ---
 name: commit-report
-description: Commits and pushes the code, then writes a short plain-language status
-  report that can be pasted straight into a WhatsApp group. This skill should be
-  used when the user says "code push", "code push kar de", "code push kar do",
-  "push the code", "commit and push", "commit kar do", or asks to share an update
-  about finished work.
+description: Commits and pushes code with a plain-language commit body, saves a dated
+  work-report file under docs/work-reports, then prints a WhatsApp-ready status
+  block. This skill should be used when the user says "code push", "code push kar de",
+  "code push kar do", "push the code", "commit and push", "commit kar do", "aaj ka
+  report bana de", "work report bana de", or asks for today's work summary.
 agent_created: true
-allowed-tools: Bash, Read, Grep, Glob
+allowed-tools: Bash, Read, Grep, Glob, Write, Edit
 ---
 
 # Commit and report
@@ -31,22 +31,40 @@ Trigger when the user asks to commit, push, or share a status update about code.
    - Run `git diff` and `git diff --cached` and read the actual content.
    - Identify the user-visible outcome of the change, not just which files moved.
 
-3. Write the commit message.
+3. Write the commit message with the report in the body.
    - Subject in imperative English, maximum 72 characters, no trailing period.
-   - Add a body only when the change is not clear from the subject alone.
+   - Body is required and carries the plain-language report in plain text
+     (no WhatsApp markup, no `*bold*`, no file names, no class names):
+     What changed:
+     - <outcome, one line>
+     - <outcome, one line>
+     Status: <Done | In progress>
+     Next: <one line>
+   - Keep the body outcome-focused for a non-technical reader.
 
 4. Check guardrails before pushing.
    - Never use `--force`, `--force-with-lease`, or `--no-verify`.
    - If the current branch is `main` or `master`, confirm with the user first.
    - If the diff touches `.env`, credentials, keys, or secrets, stop and warn.
-   - If the project defines a test command in `package.json`, `pom.xml`,
-     `build.gradle`, or `Makefile`, run it and stop on failure.
+   - Do not run tests, build, or compile commands unless the user explicitly asks.
 
 5. Commit and push.
-   - Stage the intended files, commit, then push.
+   - Stage the intended files, commit with the subject plus the report body, then push.
    - If the branch has no upstream, use `git push -u origin <branch>`.
+   - If the user asked only for a report ("aaj ka report bana de") without
+     asking to commit or push, skip the commit and push. Build the report from
+     `git log --since=midnight --oneline`, `git diff --stat`, and `git diff`
+     instead.
 
-6. Print the report as one plain-text block so it can be copied in a single action.
+6. Save the work-report file.
+   - Path is `docs/work-reports/YYYY-MM-DD.md` relative to the repo root,
+     using the local calendar date.
+   - Create `docs/work-reports` when it does not exist.
+   - When the file for today already exists, append a new entry with time and
+     commit hash instead of overwriting.
+   - Each entry contains the commit subject plus What changed, Status, and Next.
+
+7. Print the report as one plain-text block so it can be copied in a single action.
 
 ## Report format
 
@@ -89,7 +107,4 @@ Rules for the report:
 - If a change has no user-visible effect, write "Internal cleanup, no visible change".
 - Keep the whole report under 12 lines.
 
-## Language
 
-Commit messages and the report are written in English. Code, commit messages, and
-written output stay in English at all times.
