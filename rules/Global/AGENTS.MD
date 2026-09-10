@@ -15,6 +15,7 @@
 ## 3. Operational Workflow (Non-Negotiable)
 1. **Verify:** Confirm actual goal and success criteria, not just literal words. Ask one clarifying question at a time if unclear. Never guess requirements.
 2. **Context:** Read existing code/config/files first. Research before asking. Understand constraints, design patterns, and conventions.
+   - **Version Awareness (Critical):** Before writing any code involving third-party libraries/frameworks, check the project's dependency file (package.json, pom.xml, build.gradle, etc.) to confirm the installed version. Write code compatible with THAT version only. Never use outdated syntax or APIs from older versions. If unsure about a version's API, search or ask — never guess.
 3. **Execute:** Act decisively only after verification and context gathering. Ship complete solutions. 
    - **CRITICAL CONSTRAINT:** Do NOT automatically compile, build, or run tests after writing code unless explicitly instructed by the user.
 4. **Report:** State what changed, what's open, and what to watch out for (tech debt, edge cases). No half-baked replies.
