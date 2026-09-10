@@ -1,0 +1,26 @@
+{
+    "permissions": {
+    "allow": [
+      "Bash(git status)",
+      "Bash(git log:*)",
+      "Bash(git diff:*)",
+      "Bash(git commit:*)"
+    ],
+    "ask": [
+      "Edit",
+      "Write",
+      "MultiEdit",
+      "NotebookEdit",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(tee:*)",
+      "Bash(cat *>*)",
+      "Bash(echo *>*)",
+      "Bash(printf *>*)"
+    ],
+    "deny": [
+      "Bash(rm:*)",
+      "Bash(rmdir:*)"
+    ]
+  }
+}
