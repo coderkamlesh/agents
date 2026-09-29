@@ -61,40 +61,53 @@
       }
     }
   },
-  "permission": {
-    "*": "ask",
-    "read": "allow",
-    "glob": "allow",
-    "grep": "allow",
-    "skill": "allow",
-    "todowrite": "allow",
-    "webfetch": "allow",
-    "websearch": "allow",
-    "question": "allow",
-    "edit": "ask",
-    "bash": {
-      "*": "ask",
-      "tee *": "ask",
-      "cat *>*": "ask",
-      "echo *>*": "ask",
-      "printf *>*": "ask",
-      "rm *": "deny",
-      "rmdir *": "deny",
-      "git status*": "allow",
-      "git log*": "allow",
-      "git diff*": "allow",
-      "git show*": "allow",
-      "git rev-parse*": "allow",
-      "git remote -v": "allow",
-      "git commit*": "ask",
-      "git add*": "ask",
-      "git push*": "ask",
-      "git -C * status*": "allow",
-      "git -C * log*": "allow",
-      "git -C * diff*": "allow",
-      "git -C * show*": "allow",
-      "git -C * rev-parse*": "allow",
-      "git -C * remote -v": "allow"
-    }
-  }
+   "permissions": [
+    // ─── Default: sab kuch ask ───
+    // Ye base policy ke "* * allow" ko override karta hai
+    { "action": "*", "resource": "*", "effect": "ask" },
+
+    // ─── Read-only actions: allow ───
+    { "action": "read",      "resource": "*", "effect": "allow" },
+    { "action": "glob",      "resource": "*", "effect": "allow" },
+    { "action": "grep",      "resource": "*", "effect": "allow" },
+    { "action": "skill",     "resource": "*", "effect": "allow" },
+    { "action": "webfetch",  "resource": "*", "effect": "allow" },
+    { "action": "websearch", "resource": "*", "effect": "allow" },
+    { "action": "question",  "resource": "*", "effect": "allow" },
+
+    // ─── .env protection (read * allow ke BAAD, warna override ho jayega) ───
+    { "action": "read", "resource": "*.env",         "effect": "ask" },
+    { "action": "read", "resource": "*.env.*",       "effect": "ask" },
+    { "action": "read", "resource": "*.env.example", "effect": "allow" },
+
+    // ─── Edit ───
+    { "action": "edit", "resource": "*", "effect": "ask" },
+
+    // ─── Shell: read-only git commands allow ───
+    { "action": "shell", "resource": "git status*",         "effect": "allow" },
+    { "action": "shell", "resource": "git log*",            "effect": "allow" },
+    { "action": "shell", "resource": "git diff*",           "effect": "allow" },
+    { "action": "shell", "resource": "git show*",           "effect": "allow" },
+    { "action": "shell", "resource": "git rev-parse*",      "effect": "allow" },
+    { "action": "shell", "resource": "git remote -v",       "effect": "allow" },
+    { "action": "shell", "resource": "git -C * status*",    "effect": "allow" },
+    { "action": "shell", "resource": "git -C * log*",       "effect": "allow" },
+    { "action": "shell", "resource": "git -C * diff*",      "effect": "allow" },
+    { "action": "shell", "resource": "git -C * show*",      "effect": "allow" },
+    { "action": "shell", "resource": "git -C * rev-parse*", "effect": "allow" },
+    { "action": "shell", "resource": "git -C * remote -v",  "effect": "allow" },
+
+    // ─── Shell: explicitly ask (documentation ke liye — default already ask hai) ───
+    { "action": "shell", "resource": "git add*",    "effect": "ask" },
+    { "action": "shell", "resource": "git commit*", "effect": "ask" },
+    { "action": "shell", "resource": "git push*",   "effect": "ask" },
+    { "action": "shell", "resource": "tee *",       "effect": "ask" },
+    { "action": "shell", "resource": "cat *>*",     "effect": "ask" },
+    { "action": "shell", "resource": "echo *>*",    "effect": "ask" },
+    { "action": "shell", "resource": "printf *>*",  "effect": "ask" },
+
+    // ─── Shell: hard deny — ALWAYS LAST ───
+    { "action": "shell", "resource": "rm *",    "effect": "deny" },
+    { "action": "shell", "resource": "rmdir *", "effect": "deny" }
+  ]
 }
