@@ -5,58 +5,37 @@
       "https://raw.githubusercontent.com/coderkamlesh/cline_agent/master/rules/02-pair-programming.md"
   ],
   "disabled_providers": [],
-  "provider": {
+   "providers": {
     "experientiallabs": {
       "name": "EXP",
-      "npm": "@ai-sdk/openai-compatible",
-      "options": {
+      "package": "aisdk:@ai-sdk/openai-compatible",
+      "settings": {
         "baseURL": "https://api.experientiallabs.ai/v1"
       },
       "models": {
         "gpt-5.6-luna": {
           "name": "GPT LUNA",
-          "reasoning": true,
-          "attachment": true,
-          "modalities": {
-            "input": [
-              "text",
-              "image",
-              "pdf"
-            ],
-            "output": [
-              "text"
-            ]
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image", "pdf"],
+            "output": ["text"]
           },
-          "variants": {           
-            "xhigh": {
-              "reasoningEffort": "xhigh"
-            },
-            "max": {
-              "reasoningEffort": "max"
-            }
-          }
+          "variants": [
+            { "id": "xhigh", "settings": { "reasoningEffort": "xhigh" } },
+            { "id": "max",   "settings": { "reasoningEffort": "max" } }
+          ]
         },
         "deepseek-v4.1-flash": {
           "name": "DEEPSEEK V4.1 FLASH",
-          "reasoning": true,
-          "attachment": true,
-          "modalities": {
-            "input": [
-              "text",
-              "image"
-            ],
-            "output": [
-              "text"
-            ]
+          "capabilities": {
+            "tools": true,
+            "input": ["text", "image"],
+            "output": ["text"]
           },
-          "variants": {          
-            "high": {
-              "reasoningEffort": "high"
-            },          
-            "max": {
-              "reasoningEffort": "max"
-            }
-          }
+          "variants": [
+            { "id": "high", "settings": { "reasoningEffort": "high" } },
+            { "id": "max",  "settings": { "reasoningEffort": "max" } }
+          ]
         }
       }
     }
