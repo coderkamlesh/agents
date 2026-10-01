@@ -6,12 +6,19 @@ allowed-tools: Bash, Read, Write
 
 # Workflow
 
-1. Check repo state via `git status --porcelain` and unpushed commits.
-2. **Branching Logic:**
-   - **Dirty / Unpushed:** Inspect diff -> prevent committing `.env`/secrets -> commit with clear imperative message -> push to upstream.
-   - **Clean & Up-to-date:** Do not commit/push. Read today's history via `git log --since=midnight --oneline`.
-3. Save/append report to `docs/work-reports/YYYY-MM-DD.md` using current local date.
-4. Print the final block in chat for direct copy-paste.
+1. **Check Repository State:**
+   - Run `git status --porcelain` and check unpushed commits.
+2. **Commit & Push (Code Only):**
+   - **CRITICAL RULE:** NEVER stage, commit, or push files under `docs/work-reports/`. Reports must remain strictly local.
+   - Do NOT use blanket `git add .` or `git add -A`. Stage only relevant source code files.
+   - If `docs/work-reports/` is accidentally staged, immediately unstage it via `git reset docs/work-reports/` before committing.
+   - Inspect diff -> verify no `.env` or secret leaks -> commit with clear imperative message -> push to upstream.
+   - **If Clean & Up-to-date:** Skip commit/push. Read today's history via `git log --since=midnight --oneline`.
+3. **Generate Local Work Report:**
+   - Write or append the report to `docs/work-reports/YYYY-MM-DD.md` using current local date.
+   - Double check `git status` to ensure the report file remains untracked/unstaged in Git.
+4. **Output:**
+   - Print the final block in chat for direct copy-paste.
 
 # Report Guidelines
 
