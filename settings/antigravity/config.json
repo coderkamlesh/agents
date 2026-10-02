@@ -1,0 +1,61 @@
+{
+  "userSettings": {
+    "customThemeSeedsDark": {
+      "background": "#002B36",
+      "foregroundOverride": "#93A1A1",
+      "primary": "#268BD2"
+    },
+    "globalPermissionGrants": {
+      "allow": [
+        "command(git status)",
+        "command(git status --porcelain)",
+        "command(regex:git status.*)",
+        "command(git log)",
+        "command(regex:git log.*)",
+        "command(git diff)",
+        "command(regex:git diff.*)",
+        "command(git show)",
+        "command(regex:git show.*)",
+        "command(git branch)",
+        "command(git branch -a)",
+        "command(regex:git branch -.*)",
+        "command(regex:git branch --list.*)",
+        "command(git rev-parse)",
+        "command(regex:git rev-parse.*)",
+        "command(git remote -v)",
+        "command(regex:git remote -v.*)",
+        "command(git ls-files)",
+        "command(regex:git ls-files.*)",
+        "command(regex:git blame.*)",
+        "command(git tag)",
+        "command(regex:git tag -.*)",
+        "command(regex:git tag --list.*)",
+        "command(regex:git check-ignore.*)",
+        "command(git stash list)",
+        "command(regex:git stash list.*)",
+        "command(git describe)",
+        "command(regex:git describe.*)",
+        "command(git grep)",
+        "command(regex:git grep.*)",
+        "command(Get-ChildItem)",
+        "command(dir)",
+        "command(regex:\\[System\\.IO\\.File\\]::ReadAllText.*)",
+        "command(regex:Select-String.*)",
+        "read_url(ye-yu.com)"
+      ],
+      "ask": [
+        "write_file(*)",
+        "edit_file(*)"
+      ],
+      "deny": [
+        "command(rm)",
+        "command(rmdir)",
+        "command(git push --force)",
+        "command(git reset --hard)",
+        "command(git clean -fd)"
+      ]
+    },
+    "remoteControlHostname": "kamlesh-ultima-vapor",
+    "themeMode": "THEME_MODE_DARK"
+  }
+}
