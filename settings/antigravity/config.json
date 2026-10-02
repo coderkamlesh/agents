@@ -38,6 +38,7 @@
         "command(git grep)",
         "command(regex:git grep.*)",
         "command(Get-ChildItem)",
+        "command(regex:Get-ChildItem.*)",
         "command(dir)",
         "command(regex:\\[System\\.IO\\.File\\]::ReadAllText.*)",
         "command(regex:Select-String.*)",
