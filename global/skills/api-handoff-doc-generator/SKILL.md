@@ -67,6 +67,18 @@ Trigger phrases the user actually says, in Hinglish:
    - Create `docs/api-handoff/` automatically if it does not exist.
    - Overwrite existing files with the latest data.
 
+## Strict Mermaid Diagram Rules (Zero-Parse-Error Policy)
+When including Mermaid workflow diagrams (`flowchart TD`), strictly follow these compatibility rules to prevent parser crashes on Mermaid 11.x / markdownlivepreview.com:
+1. **NO `subgraph`:** Never use `subgraph` blocks. Use a flat, linear flowchart instead.
+2. **NO `{}` inside rectangular nodes:** Never put path variables like `{userId}` or curly braces inside `[...]` shapes (e.g. `[GET /users/{id}]` breaks Mermaid tokenizer). Use `:userId` or `<userId>` instead (e.g. `[GET /users/:id]`).
+3. **NO quotes inside pipes/delimiters:** Never write `-->|"Yes"|` or `{"Condition"}`.
+4. **Clean branch labels:** Use standard `-- Yes, status: 1 -->` or `-->` without nested quotes.
+5. **NO Ampersand (`&`):** Never use `&` inside node text or transitions. Always use the word `and`.
+6. **Standard node shapes only:**
+   - Action/Endpoint: `A[Text here]`
+   - Decision/Condition: `C{Is Condition?}`
+   - Use `<br/>` for line breaks inside nodes.
+
 ## Output format template
 
 ### [Number]. [Endpoint purpose]
