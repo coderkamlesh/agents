@@ -1,92 +1,200 @@
 {
   "$schema": "https://opencode.ai/config.json",
-   "instructions":[
-      "https://raw.githubusercontent.com/coderkamlesh/cline_agent/master/rules/01-global.md",
-      "https://raw.githubusercontent.com/coderkamlesh/cline_agent/master/rules/02-pair-programming.md"
+  "model": "opencode/muse-spark-1.3-contributor-free",
+  "formatter": true,
+  "update": "notify",
+  "shell": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+  "permissions": [
+    { "action": "read", "resource": "*", "effect": "allow" },
+    { "action": "read", "resource": "*.env", "effect": "ask" },
+    { "action": "read", "resource": "*.env.*", "effect": "ask" },
+    { "action": "read", "resource": "*.env.example", "effect": "allow" },
+    { "action": "glob", "resource": "*", "effect": "allow" },
+    { "action": "grep", "resource": "*", "effect": "allow" },
+
+    { "action": "edit", "resource": "*", "effect": "ask" },
+
+    { "action": "shell", "resource": "*", "effect": "ask" },
+
+    { "action": "shell", "resource": "dir *", "effect": "allow" },
+    { "action": "shell", "resource": "ls *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-ChildItem *", "effect": "allow" },
+    { "action": "shell", "resource": "gci *", "effect": "allow" },
+    { "action": "shell", "resource": "tree *", "effect": "allow" },
+    { "action": "shell", "resource": "pwd *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Location *", "effect": "allow" },
+    { "action": "shell", "resource": "Test-Path *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Item *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-ItemProperty *", "effect": "allow" },
+    { "action": "shell", "resource": "Resolve-Path *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-FileHash *", "effect": "allow" },
+    { "action": "shell", "resource": "Measure-Object *", "effect": "allow" },
+
+    { "action": "shell", "resource": "Get-Content *", "effect": "allow" },
+    { "action": "shell", "resource": "cat *", "effect": "allow" },
+    { "action": "shell", "resource": "type *", "effect": "allow" },
+    { "action": "shell", "resource": "gc *", "effect": "allow" },
+    { "action": "shell", "resource": "more *", "effect": "allow" },
+
+    { "action": "shell", "resource": "Select-String *", "effect": "allow" },
+    { "action": "shell", "resource": "sls *", "effect": "allow" },
+    { "action": "shell", "resource": "findstr *", "effect": "allow" },
+    { "action": "shell", "resource": "find *", "effect": "allow" },
+    { "action": "shell", "resource": "rg *", "effect": "allow" },
+    { "action": "shell", "resource": "grep *", "effect": "allow" },
+
+    { "action": "shell", "resource": "Get-Process *", "effect": "allow" },
+    { "action": "shell", "resource": "gps *", "effect": "allow" },
+    { "action": "shell", "resource": "ps *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Service *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Command *", "effect": "allow" },
+    { "action": "shell", "resource": "gcm *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Help *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Module *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Alias *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Variable *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Member *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-CimInstance *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-WmiObject *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-EventLog *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-WinEvent *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-ComputerInfo *", "effect": "allow" },
+    { "action": "shell", "resource": "systeminfo *", "effect": "allow" },
+    { "action": "shell", "resource": "tasklist *", "effect": "allow" },
+    { "action": "shell", "resource": "whoami *", "effect": "allow" },
+    { "action": "shell", "resource": "hostname *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Date *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Host *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-Culture *", "effect": "allow" },
+    { "action": "shell", "resource": "Write-Output *", "effect": "allow" },
+    { "action": "shell", "resource": "echo *", "effect": "allow" },
+
+    { "action": "shell", "resource": "Test-Connection *", "effect": "allow" },
+    { "action": "shell", "resource": "ping *", "effect": "allow" },
+    { "action": "shell", "resource": "Resolve-DnsName *", "effect": "allow" },
+    { "action": "shell", "resource": "nslookup *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-NetIPAddress *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-NetIPConfiguration *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-NetTCPConnection *", "effect": "allow" },
+    { "action": "shell", "resource": "Get-NetAdapter *", "effect": "allow" },
+    { "action": "shell", "resource": "ipconfig *", "effect": "allow" },
+
+    { "action": "shell", "resource": "node --version", "effect": "allow" },
+    { "action": "shell", "resource": "npm --version", "effect": "allow" },
+    { "action": "shell", "resource": "python --version", "effect": "allow" },
+    { "action": "shell", "resource": "git --version", "effect": "allow" },
+    { "action": "shell", "resource": "dotnet --version", "effect": "allow" },
+    { "action": "shell", "resource": "npm ls *", "effect": "allow" },
+    { "action": "shell", "resource": "npm list *", "effect": "allow" },
+    { "action": "shell", "resource": "pip list *", "effect": "allow" },
+    { "action": "shell", "resource": "pip show *", "effect": "allow" },
+
+    { "action": "shell", "resource": "git status *", "effect": "allow" },
+    { "action": "shell", "resource": "git diff *", "effect": "allow" },
+    { "action": "shell", "resource": "git log *", "effect": "allow" },
+    { "action": "shell", "resource": "git show *", "effect": "allow" },
+    { "action": "shell", "resource": "git branch *", "effect": "allow" },
+    { "action": "shell", "resource": "git remote *", "effect": "allow" },
+    { "action": "shell", "resource": "git rev-parse *", "effect": "allow" },
+    { "action": "shell", "resource": "git ls-files *", "effect": "allow" },
+    { "action": "shell", "resource": "git blame *", "effect": "allow" },
+    { "action": "shell", "resource": "git describe *", "effect": "allow" },
+    { "action": "shell", "resource": "git tag *", "effect": "allow" },
+    { "action": "shell", "resource": "git shortlog *", "effect": "allow" },
+    { "action": "shell", "resource": "git config --get *", "effect": "allow" },
+    { "action": "shell", "resource": "git stash list *", "effect": "allow" },
+
+    { "action": "shell", "resource": "Get-Content *.env*", "effect": "ask" },
+    { "action": "shell", "resource": "cat *.env*", "effect": "ask" },
+    { "action": "shell", "resource": "type *.env*", "effect": "ask" },
+    { "action": "shell", "resource": "gc *.env*", "effect": "ask" },
+    { "action": "shell", "resource": "more *.env*", "effect": "ask" },
+
+    { "action": "shell", "resource": "git push *", "effect": "deny" },
+    { "action": "shell", "resource": "git reset --hard *", "effect": "deny" },
+    { "action": "shell", "resource": "git clean *", "effect": "deny" },
+    { "action": "shell", "resource": "Remove-Item *", "effect": "deny" },
+    { "action": "shell", "resource": "rm *", "effect": "deny" },
+    { "action": "shell", "resource": "del *", "effect": "deny" },
+    { "action": "shell", "resource": "erase *", "effect": "deny" },
+    { "action": "shell", "resource": "rd *", "effect": "deny" },
+    { "action": "shell", "resource": "rmdir *", "effect": "deny" },
+    { "action": "shell", "resource": "format *", "effect": "deny" },
+    { "action": "shell", "resource": "diskpart *", "effect": "deny" },
+    { "action": "shell", "resource": "Set-ExecutionPolicy *", "effect": "deny" },
+    { "action": "shell", "resource": "Stop-Process *", "effect": "deny" },
+    { "action": "shell", "resource": "Stop-Computer *", "effect": "deny" },
+    { "action": "shell", "resource": "Restart-Computer *", "effect": "deny" },
+    { "action": "shell", "resource": "sudo *", "effect": "deny" }
   ],
-  "disabled_providers": [],
-   "providers": {
-    "experientiallabs": {
-      "name": "EXP",
-      "package": "aisdk:@ai-sdk/openai-compatible",
+  "watcher": {
+    "ignore": [
+      "node_modules/**",
+      "dist/**",
+      "build/**",
+      "out/**",
+      ".next/**",
+      "coverage/**",
+      "target/**",
+      ".venv/**",
+      "__pycache__/**",
+      "*.log"
+    ]
+  },
+  "compaction": {
+    "auto": true,
+    "keep": { "tokens": 18000 },
+    "buffer": 50000
+  },
+  "providers": {
+    "experiential": {
+      "name": "Experiential Labs",
+      "env": ["EXPLABS_API_KEY"],
+      "package": "@opencode/ai/providers/openai-compatible",
       "settings": {
         "baseURL": "https://api.experientiallabs.ai/v1"
       },
       "models": {
-        "gpt-5.6-luna": {
-          "name": "GPT LUNA",
+        "qwen3.8-flash-next-uncensored": {
+          "name": "Qwen3.8 Flash Next",
           "capabilities": {
             "tools": true,
-            "input": ["text", "image", "pdf"],
+            "input": ["text"],
             "output": ["text"]
           },
+          "limit": {
+            "context": 262144,
+            "output": 65536
+          },
+          "settings": {
+            "reasoningEffort": "xhigh"
+          },
           "variants": [
-            { "id": "xhigh", "settings": { "reasoningEffort": "xhigh" } },
-            { "id": "max",   "settings": { "reasoningEffort": "max" } }
+            { "id": "low", "settings": { "reasoningEffort": "low" } },
+            { "id": "medium", "settings": { "reasoningEffort": "medium" } },
+            { "id": "xhigh", "settings": { "reasoningEffort": "xhigh" } }
           ]
         },
-        "deepseek-v4.1-flash": {
-          "name": "DEEPSEEK V4.1 FLASH",
+        "gpt-6-luna": {
+          "name": "GPT-6 Luna",
           "capabilities": {
             "tools": true,
             "input": ["text", "image"],
             "output": ["text"]
           },
+          "limit": {
+            "context": 1050000,
+            "output": 128000
+          },
+          "settings": {
+            "reasoningEffort": "max"
+          },
           "variants": [
-            { "id": "high", "settings": { "reasoningEffort": "high" } },
-            { "id": "max",  "settings": { "reasoningEffort": "max" } }
+            { "id": "xhigh", "settings": { "reasoningEffort": "xhigh" } },
+            { "id": "max", "settings": { "reasoningEffort": "max" } }
           ]
         }
       }
     }
-  },
-   "permissions": [
-    // ─── Default: sab kuch ask ───
-    // Ye base policy ke "* * allow" ko override karta hai
-    { "action": "*", "resource": "*", "effect": "ask" },
-
-    // ─── Read-only actions: allow ───
-    { "action": "read",      "resource": "*", "effect": "allow" },
-    { "action": "glob",      "resource": "*", "effect": "allow" },
-    { "action": "grep",      "resource": "*", "effect": "allow" },
-    { "action": "skill",     "resource": "*", "effect": "allow" },
-    { "action": "webfetch",  "resource": "*", "effect": "allow" },
-    { "action": "websearch", "resource": "*", "effect": "allow" },
-    { "action": "question",  "resource": "*", "effect": "allow" },
-
-    // ─── .env protection (read * allow ke BAAD, warna override ho jayega) ───
-    { "action": "read", "resource": "*.env",         "effect": "ask" },
-    { "action": "read", "resource": "*.env.*",       "effect": "ask" },
-    { "action": "read", "resource": "*.env.example", "effect": "allow" },
-
-    // ─── Edit ───
-    { "action": "edit", "resource": "*", "effect": "ask" },
-
-    // ─── Shell: read-only git commands allow ───
-    { "action": "shell", "resource": "git status*",         "effect": "allow" },
-    { "action": "shell", "resource": "git log*",            "effect": "allow" },
-    { "action": "shell", "resource": "git diff*",           "effect": "allow" },
-    { "action": "shell", "resource": "git show*",           "effect": "allow" },
-    { "action": "shell", "resource": "git rev-parse*",      "effect": "allow" },
-    { "action": "shell", "resource": "git remote -v",       "effect": "allow" },
-    { "action": "shell", "resource": "git -C * status*",    "effect": "allow" },
-    { "action": "shell", "resource": "git -C * log*",       "effect": "allow" },
-    { "action": "shell", "resource": "git -C * diff*",      "effect": "allow" },
-    { "action": "shell", "resource": "git -C * show*",      "effect": "allow" },
-    { "action": "shell", "resource": "git -C * rev-parse*", "effect": "allow" },
-    { "action": "shell", "resource": "git -C * remote -v",  "effect": "allow" },
-
-    // ─── Shell: explicitly ask (documentation ke liye — default already ask hai) ───
-    { "action": "shell", "resource": "git add*",    "effect": "ask" },
-    { "action": "shell", "resource": "git commit*", "effect": "ask" },
-    { "action": "shell", "resource": "git push*",   "effect": "ask" },
-    { "action": "shell", "resource": "tee *",       "effect": "ask" },
-    { "action": "shell", "resource": "cat *>*",     "effect": "ask" },
-    { "action": "shell", "resource": "echo *>*",    "effect": "ask" },
-    { "action": "shell", "resource": "printf *>*",  "effect": "ask" },
-
-    // ─── Shell: hard deny — ALWAYS LAST ───
-    { "action": "shell", "resource": "rm *",    "effect": "deny" },
-    { "action": "shell", "resource": "rmdir *", "effect": "deny" }
-  ]
+  }
 }
