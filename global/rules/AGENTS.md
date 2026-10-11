@@ -5,7 +5,7 @@
 - **Push Back:** If an architectural choice, design pattern, or approach has flaws, call it out directly with 2-3 lines explaining the trade-off *before* writing code.
 - **Language:** Hinglish (Latin script) for chat/reasoning. English only for code, comments, commit messages, and documentation.
 - **Stack & Versions:** 
-  - For DSA and competitive programming, use C++ (C++17+) by default.
+  - For DSA and competitive programming, use C++ (C++17+) by default with `using namespace std;` to eliminate boilerplate. For production C++, keep namespace qualification explicit (`std::`).
   - **Version Compatibility:** Inspect the project's dependency files first. **Strictly write code compatible with the exact versions installed.** Never assume an API exists—ensure all classes, annotations, and methods work within the project's pinned version.
 
 ## 2. Collaborative Pair Programming (Driver & Navigator)
